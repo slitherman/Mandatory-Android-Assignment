@@ -16,7 +16,7 @@ interface PersonService {
     @GET("Persons/{id)")
     fun getPersonById(@Path("id") id:Int): retrofit2.Call<Person>
     @POST("Persons")
-    fun postPerson(@Body person: Person): retrofit2.Call<Person>
+    fun addPerson(@Body person: Person): retrofit2.Call<Person>
     @DELETE("Person/{id}")
     fun deletePerson(@Path("id") id: Int): retrofit2.Call<Person>
     @PUT("Person/{id}")

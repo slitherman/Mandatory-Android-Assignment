@@ -37,6 +37,7 @@
             android:layout_height="wrap_content"
             android:text="Some text"
             android:textStyle="italic" />
+
     </LinearLayout>
 
 </com.google.android.material.card.MaterialCardView>

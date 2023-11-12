@@ -7,12 +7,12 @@ plugins {
 
 android {
     namespace = "com.example.mobilemandatoryassignmentbirthdaylist"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.mobilemandatoryassignmentbirthdaylist"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -74,8 +74,8 @@ dependencies {
 
     // Add the dependency for the Firebase Authentication library
     // When using the BoM, you don't specify versions in Firebase library dependencies
-    implementation("com.google.firebase:firebase-auth-ktx")
 
+    implementation(platform("com.google.firebase:firebase-bom:32.5.0"))
     // Also add the dependency for the Google Play services library and specify its version
-    implementation("com.google.android.gms:play-services-auth:20.7.0")
+
 }
