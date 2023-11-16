@@ -17,6 +17,7 @@ class PersonsAdapter(
         RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
         val textView: TextView = itemView.findViewById(R.id.textview_list_item)
+        val ageTextView: TextView = itemView.findViewById(R.id.textview_age)
 
         init {
             itemView.setOnClickListener(this)
@@ -31,6 +32,7 @@ class PersonsAdapter(
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val item = items[position]
         holder.textView.text = item.toString()
+        holder.ageTextView.text = "Age: ${item.age ?: "N/A"}"
 
 
     }

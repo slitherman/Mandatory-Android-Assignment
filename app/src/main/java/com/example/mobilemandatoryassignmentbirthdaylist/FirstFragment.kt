@@ -8,9 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.mobilemandatoryassignmentbirthdaylist.Models.DisplayablePerson
-import com.example.mobilemandatoryassignmentbirthdaylist.Models.OnPersonInteractionListener
-import com.example.mobilemandatoryassignmentbirthdaylist.Models.Person
 import com.example.mobilemandatoryassignmentbirthdaylist.Models.PersonsAdapter
 import com.example.mobilemandatoryassignmentbirthdaylist.Models.PersonsViewModel
 import com.example.mobilemandatoryassignmentbirthdaylist.databinding.FragmentFirstBinding
@@ -22,6 +19,7 @@ class FirstFragment : Fragment() {
 
     private var _binding: FragmentFirstBinding? = null
     private val PersonsViewModel: PersonsViewModel by activityViewModels()
+
 
 
     // This property is only valid between onCreateView and
@@ -43,7 +41,7 @@ class FirstFragment : Fragment() {
         val switch = binding.switchEditMode
         switch.setOnCheckedChangeListener { _, isChecked ->
             PersonsViewModel.setEditMode(isChecked)
-            // You can update UI or perform additional actions based on the edit mode here
+
         }
         PersonsViewModel.personLiveData.observe(viewLifecycleOwner) { persons ->
             binding.progressbar.visibility = View.GONE
@@ -61,7 +59,8 @@ class FirstFragment : Fragment() {
                     } else {
                         val selectedPerson = persons[position]
                         PersonsViewModel.setFriendDetails(selectedPerson)
-                        findNavController().navigate(R.id.action_FirstFragment_to_friendFragment)
+                        val action = FirstFragmentDirections.actionFirstFragmentToFriendFragment(position)
+                        findNavController().navigate(action)
                     }
 
                 }
@@ -69,6 +68,10 @@ class FirstFragment : Fragment() {
 
                 binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), columns)
                 binding.recyclerView.adapter = adapter
+                binding.swiperefresh.setOnRefreshListener {
+                    PersonsViewModel.reload()
+                    binding.swiperefresh.isRefreshing = false //
+                }
             }
         }
 
@@ -97,6 +100,7 @@ class FirstFragment : Fragment() {
         }
 
         binding.buttonAdd.setOnClickListener {
+
             val action = FirstFragmentDirections.actionFirstFragmentToThirdFragment()
             findNavController().navigate(action)
         }

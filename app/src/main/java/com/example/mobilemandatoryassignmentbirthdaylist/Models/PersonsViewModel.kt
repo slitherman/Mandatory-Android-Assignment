@@ -10,7 +10,7 @@ class PersonsViewModel:ViewModel() {
 
 val personLiveData: LiveData<List<DisplayablePerson>> = repo.personLiveData
     val errMsgLiveData: LiveData<String> = repo.errMsgLiveData
-    val updateMsgLiveData: LiveData<String> = repo.updateMsgLiveData
+
   val _friendDetails = MutableLiveData<DisplayablePerson>()
 
 
@@ -41,11 +41,18 @@ val personLiveData: LiveData<List<DisplayablePerson>> = repo.personLiveData
     operator fun get(index: Int): DisplayablePerson? {
         return personLiveData.value?.get(index)
     }
-    fun delete(id: Int) {
-        repo.deletePerson(id)
+    fun delete(id: Int?) {
+        if (id != null) {
+            repo.deletePerson(id)
+        }
     }
-    fun addCar(person: Person) {
+    fun addPerson(person: DisplayablePerson) {
         repo.addPerson(person)
+    }
+    fun updatePeron(Id: Int?, Update: DisplayablePerson) {
+        if (Id != null) {
+            repo.updatedPerson(Id,Update)
+        }
     }
     fun sortByAge() {
         repo.sortByAge()

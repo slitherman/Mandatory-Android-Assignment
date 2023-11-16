@@ -7,6 +7,14 @@
     android:orientation="vertical"
     tools:context=".FriendFragment">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
@@ -29,6 +37,26 @@
         />
     </androidx.cardview.widget.CardView>
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewAge"
+        android:layout_width="match_parent"
+        android:layout_height="111dp"
+        app:cardCornerRadius="8dp"
+        android:background="@color/blue"
+        app:cardElevation="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+    <TextView
+        android:id="@+id/textViewAge"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:text="Friend's Age"
+        android:textSize="18sp"
+        />
+    </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView1"
         android:layout_width="match_parent"
@@ -99,11 +127,68 @@
 
     </androidx.cardview.widget.CardView>
 
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewId"
+        android:layout_width="match_parent"
+        android:layout_height="111dp"
+        app:cardCornerRadius="8dp"
+        android:background="@color/blue"
+        app:cardElevation="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textViewId"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp"
+            android:text="Friend's Id"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewBirthday" />
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardViewIdRemove"
+                android:layout_width="match_parent"
+                android:layout_height="111dp"
+                app:cardCornerRadius="8dp"
+                android:background="@color/blue"
+                app:cardElevation="4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <EditText
+                    android:id="@+id/EtIdRemove"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="16dp"
+                    android:hint="Enter id to delete"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textViewBirthday" />
+
+
+            </androidx.cardview.widget.CardView>
     <Button
-        android:id="@+id/btnHome"
+        android:id="@+id/btnDelete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Home"/>
-
+        android:layout_marginBottom="20dp"
+        android:text="Delete"/>
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

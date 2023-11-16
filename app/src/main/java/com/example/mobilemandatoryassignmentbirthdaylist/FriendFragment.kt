@@ -55,14 +55,26 @@ class FriendFragment : Fragment() {
             binding.textViewName.text =  "Name: " + friendDetails.name
             val formattedBirthday = "%02d/%02d/%04d".format(
                 friendDetails.birthMonth,
-                friendDetails.birthDay,
+                friendDetails.birthDayOfMonth,
                 friendDetails.birthYear)
+
             binding.textViewBirthday.text = " BirthDate: " +    formattedBirthday
             binding.textViewRemarks.text = " Remarks: " +  friendDetails.remarks
-            binding.textViewUserId.text =  "UserId: " +  friendDetails.userId
+            binding.textViewUserId.text =  "Email: " +  friendDetails.userId
+            binding.textViewId.text = "Id: " + friendDetails.id
         }
-        binding.btnHome.setOnClickListener {
+
+        binding.btnDelete.setOnClickListener {
+            val bundle = requireArguments()
+            val friendFragArg: FriendFragmentArgs = FriendFragmentArgs.fromBundle(bundle)
+            val position = friendFragArg.position
+            val PersonToDelete = PersonsViewModel[position]
+
+            if (PersonToDelete != null) {
+                PersonsViewModel.delete(PersonToDelete.id)
+            }
             findNavController().popBackStack()
+
         }
 
     }

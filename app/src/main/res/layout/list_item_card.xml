@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="5dp">
-        <!-- NOT android:layout_height="match_parent" -->
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -36,6 +36,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Some text"
+            android:textStyle="italic" />
+        <TextView
+            android:id="@+id/textview_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Age: N/A"
             android:textStyle="italic" />
 
     </LinearLayout>

@@ -44,7 +44,9 @@
         android:id="@+id/thirdFragment"
         android:name="com.example.mobilemandatoryassignmentbirthdaylist.ThirdFragment"
         android:label="fragment_third"
-        tools:layout="@layout/fragment_third" />
+        tools:layout="@layout/fragment_third" >
+
+    </fragment>
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.example.mobilemandatoryassignmentbirthdaylist.RegisterFragment"
@@ -59,6 +61,10 @@
         android:id="@+id/friendFragment"
         android:name="com.example.mobilemandatoryassignmentbirthdaylist.FriendFragment"
         android:label="fragment_friend"
-        tools:layout="@layout/fragment_friend" />
+        tools:layout="@layout/fragment_friend" >
+        <argument
+            android:name="position"
+            app:argType="integer" />
+    </fragment>
 
 </navigation>

@@ -9,7 +9,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 import java.util.Calendar
 
 class PersonRepo {
@@ -75,7 +74,7 @@ class PersonRepo {
         )
     }
 
-    fun addPerson(person: Person) {
+    fun addPerson(person: DisplayablePerson) {
         personService.addPerson(person).enqueue(object:  Callback<Person> {
             override fun onResponse(call: Call<Person>, response: Response<Person>) {
              if(response.isSuccessful) {
@@ -122,7 +121,7 @@ class PersonRepo {
         }
         )
     }
-    fun updatedPerson(Id: Int, Update: Person ) {
+    fun updatedPerson(Id: Int, Update: DisplayablePerson) {
         personService.updatePerson(Id,Update).enqueue(object:  Callback<Person> {
             override fun onResponse(call: Call<Person>, response: Response<Person>) {
              if(response.isSuccessful) {
@@ -156,7 +155,7 @@ class PersonRepo {
         personLiveData.value = personLiveData.value?.sortedWith(compareBy(
 
             {
-                it.birthDay
+                it.birthDayOfMonth
             },
             {
                 it.birthMonth

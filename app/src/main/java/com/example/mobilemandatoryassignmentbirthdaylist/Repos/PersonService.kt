@@ -1,6 +1,6 @@
 package com.example.mobilemandatoryassignmentbirthdaylist.Repos
 
-import android.telecom.Call
+import com.example.mobilemandatoryassignmentbirthdaylist.Models.DisplayablePerson
 import com.example.mobilemandatoryassignmentbirthdaylist.Models.Person
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -16,9 +16,9 @@ interface PersonService {
     @GET("Persons/{id)")
     fun getPersonById(@Path("id") id:Int): retrofit2.Call<Person>
     @POST("Persons")
-    fun addPerson(@Body person: Person): retrofit2.Call<Person>
-    @DELETE("Person/{id}")
+    fun addPerson(@Body person: DisplayablePerson): retrofit2.Call<Person>
+    @DELETE("Persons/{id}")
     fun deletePerson(@Path("id") id: Int): retrofit2.Call<Person>
-    @PUT("Person/{id}")
-    fun updatePerson(@Path("id") id:Int, @Body person: Person): retrofit2.Call<Person>
+    @PUT("Persons/{id}")
+    fun updatePerson(@Path("id") id:Int, @Body displayablePerson: DisplayablePerson): retrofit2.Call<Person>
 }
