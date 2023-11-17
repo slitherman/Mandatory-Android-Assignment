@@ -1,14 +1,20 @@
 package com.example.mobilemandatoryassignmentbirthdaylist.Repos
 
+import android.content.ContentProvider
+import android.content.Context
 import android.util.Log
+import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.MutableLiveData
 import com.example.mobilemandatoryassignmentbirthdaylist.Models.DisplayablePerson
 import com.example.mobilemandatoryassignmentbirthdaylist.Models.Person
+import com.google.firebase.auth.FirebaseAuth
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.net.Authenticator
 import java.util.Calendar
 
 class PersonRepo {
@@ -17,6 +23,7 @@ class PersonRepo {
     val personLiveData = MutableLiveData<List<DisplayablePerson>>()
     val errMsgLiveData = MutableLiveData<String>()
     val updateMsgLiveData = MutableLiveData<String>()
+   private val auth = FirebaseAuth.getInstance()
 
     init {
         val retrofit = Retrofit.Builder()
@@ -26,8 +33,8 @@ class PersonRepo {
         personService = retrofit.create(PersonService::class.java)
 
     }
-    fun getPersons() {
-        personService.getAllPersons().enqueue(object : Callback<List<Person>>
+    fun getPersons(mail:String) {
+        personService.getAllPersons(mail).enqueue(object : Callback<List<Person>>
         {
             override fun onResponse(call: Call<List<Person>>, response: Response<List<Person>>) {
                 if(response.isSuccessful) {
@@ -94,8 +101,6 @@ class PersonRepo {
                 errMsgLiveData.postValue(t.message)
                 Log.d("PersonsFailure", t.message!!)
             }
-
-
         })
     }
     fun deletePerson(id:Int) {
@@ -169,7 +174,11 @@ class PersonRepo {
     fun filterPersons(name: String = "", age: String = "") {
         if (name.isBlank() && age.isBlank()) {
 
-            getPersons()
+
+            if(auth.currentUser?.email == null) {
+                auth.signOut()
+            }
+            getPersons(auth.currentUser?.email!!)
         } else {
             val ageInt = age.toIntOrNull()
 

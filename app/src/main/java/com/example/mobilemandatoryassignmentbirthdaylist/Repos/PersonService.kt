@@ -8,11 +8,12 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface PersonService {
 
     @GET("Persons")
-    fun getAllPersons(): retrofit2.Call<List<Person>>
+    fun getAllPersons( @Query("user_id") userId:String): retrofit2.Call<List<Person>>
     @GET("Persons/{id)")
     fun getPersonById(@Path("id") id:Int): retrofit2.Call<Person>
     @POST("Persons")

@@ -85,8 +85,8 @@ class SignInFragment : Fragment() {
         _auth.addAuthStateListener { auth ->
             val currentUser = _auth.currentUser
             if (currentUser != null) {
-                val action = SignInFragmentDirections.actionSignInFragmentToFirstFragment()
-                findNavController().navigate(action)
+
+                findNavController().navigate(R.id.action_signInFragment_to_FirstFragment)
             }
         }
     }
