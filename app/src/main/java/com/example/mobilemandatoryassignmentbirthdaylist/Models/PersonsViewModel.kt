@@ -35,9 +35,10 @@ val personLiveData: LiveData<List<DisplayablePerson>> = repo.personLiveData
     fun setFriendDetails(friend: DisplayablePerson) {
         _friendDetails.value = friend
     }
-    fun reload() {
-        repo.getPersons()
+    fun reload(email:String) {
+        repo.getPersons(email)
     }
+
     operator fun get(index: Int): DisplayablePerson? {
         return personLiveData.value?.get(index)
     }

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.mobilemandatoryassignmentbirthdaylist.Models.PersonsAdapter
 import com.example.mobilemandatoryassignmentbirthdaylist.Models.PersonsViewModel
 import com.example.mobilemandatoryassignmentbirthdaylist.databinding.FragmentFirstBinding
+import com.google.firebase.auth.FirebaseAuth
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -20,6 +21,7 @@ class FirstFragment : Fragment() {
 
     private var _binding: FragmentFirstBinding? = null
     private val PersonsViewModel: PersonsViewModel by activityViewModels()
+    private val auth = FirebaseAuth.getInstance()
 
 
 
@@ -71,7 +73,7 @@ class FirstFragment : Fragment() {
                 binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), column)
                 binding.recyclerView.adapter = adapter
                 binding.swiperefresh.setOnRefreshListener {
-                    PersonsViewModel.reload()
+                    PersonsViewModel.reload(auth.currentUser?.email!!)
                     binding.swiperefresh.isRefreshing = false
                 }
             }
@@ -81,10 +83,10 @@ class FirstFragment : Fragment() {
             binding.textviewMessage.text = errorMessage
         }
 
-        PersonsViewModel.reload()
+        PersonsViewModel.reload(auth.currentUser?.email!!)
 
         binding.swiperefresh.setOnRefreshListener {
-            PersonsViewModel.reload()
+            PersonsViewModel.reload(auth.currentUser?.email!!)
             binding.swiperefresh.isRefreshing = false
         }
         binding.buttonSort.setOnClickListener {

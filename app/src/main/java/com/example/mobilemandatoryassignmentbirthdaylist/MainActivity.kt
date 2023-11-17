@@ -49,10 +49,11 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_logout -> {
-                if (FirebaseAuth.getInstance().currentUser != null) {
-                    FirebaseAuth.getInstance().signOut()
+                if (Firebase.auth.currentUser != null) {
+                    Firebase.auth.signOut()
                     Toast.makeText(applicationContext, "Signed out", Toast.LENGTH_SHORT).show()
-                    findNavController(R.id.nav_host_fragment_content_main).navigate(R.id.signInFragment)
+                    val navController = findNavController(R.id.nav_host_fragment_content_main)
+                    navController.popBackStack(R.id.signInFragment, false)
                 } else {
                     Toast.makeText(applicationContext, "Cannot sign out", Toast.LENGTH_SHORT).show()
                 }
