@@ -27,9 +27,9 @@ class SignInFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private var _binding: FragmentSignInBinding? = null
+    private var _bindingSignIn: FragmentSignInBinding? = null
     private lateinit var _auth: FirebaseAuth
-    private val binding get() = _binding!!
+    private val binding get() = _bindingSignIn!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _auth = Firebase.auth
@@ -44,7 +44,8 @@ class SignInFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentSignInBinding.inflate(inflater,container,false)
+
+        _bindingSignIn = FragmentSignInBinding.inflate(inflater,container,false)
         return binding.root
     }
 

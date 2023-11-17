@@ -1,5 +1,6 @@
 package com.example.mobilemandatoryassignmentbirthdaylist
 
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -48,11 +49,14 @@ class FirstFragment : Fragment() {
             binding.recyclerView.visibility = if (persons.isNullOrEmpty()) View.GONE else View.VISIBLE
 
             if (persons != null) {
-                val columns = resources.getInteger(R.integer.grid_columns)
+                val isLandscape = resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+                val column = if (isLandscape) {
+                    resources.getInteger(R.integer.grid_columns_landscape)
+                } else {
+                    resources.getInteger(R.integer.grid_columns)
+                }
+
                 val adapter = PersonsAdapter(persons) { position ->
-
-
-
                     if (PersonsViewModel.isEditMode()) {
                         val action = FirstFragmentDirections.actionFirstFragmentToSecondFragment(position)
                         findNavController().navigate(action)
@@ -62,15 +66,13 @@ class FirstFragment : Fragment() {
                         val action = FirstFragmentDirections.actionFirstFragmentToFriendFragment(position)
                         findNavController().navigate(action)
                     }
-
                 }
 
-
-                binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), columns)
+                binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), column)
                 binding.recyclerView.adapter = adapter
                 binding.swiperefresh.setOnRefreshListener {
                     PersonsViewModel.reload()
-                    binding.swiperefresh.isRefreshing = false //
+                    binding.swiperefresh.isRefreshing = false
                 }
             }
         }

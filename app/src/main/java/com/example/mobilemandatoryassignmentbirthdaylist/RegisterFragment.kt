@@ -27,10 +27,9 @@ class RegisterFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private var _binding: FragmentRegisterBinding? = null
+    private var _bindingRegister: FragmentRegisterBinding? = null
     private lateinit var _auth: FirebaseAuth
-
-    private val binding get() = _binding!!
+    private val binding get() = _bindingRegister!!
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,7 +46,8 @@ class RegisterFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentRegisterBinding.inflate(inflater, container, false)
+
+        _bindingRegister = FragmentRegisterBinding.inflate(inflater, container, false)
         return binding.root
     }
 
