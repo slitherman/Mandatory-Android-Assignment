@@ -1,5 +1,6 @@
 package com.example.mobilemandatoryassignmentbirthdaylist
 
+import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
@@ -9,7 +10,12 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import com.example.mobilemandatoryassignmentbirthdaylist.databinding.ActivityMainBinding
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+
+import com.google.firebase.auth.auth
 
 class MainActivity : AppCompatActivity() {
 
@@ -41,11 +47,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.action_settings -> true
+            R.id.action_logout -> {
+                if (FirebaseAuth.getInstance().currentUser != null) {
+                    FirebaseAuth.getInstance().signOut()
+                    Toast.makeText(applicationContext, "Signed out", Toast.LENGTH_SHORT).show()
+                    findNavController(R.id.nav_host_fragment_content_main).navigate(R.id.signInFragment)
+                } else {
+                    Toast.makeText(applicationContext, "Cannot sign out", Toast.LENGTH_SHORT).show()
+                }
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }

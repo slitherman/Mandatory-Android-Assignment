@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <!-- entries defines in values / strings.xml -->
+
 
         <Spinner
             android:id="@+id/spinner_sorting"
