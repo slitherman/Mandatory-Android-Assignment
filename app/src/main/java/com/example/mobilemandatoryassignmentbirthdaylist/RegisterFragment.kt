@@ -63,15 +63,16 @@ class RegisterFragment : Fragment() {
             val password = passEt.text.toString()
             val confirm = confirmPassEt.text.toString()
             if(email.isEmpty()) {
-                Toast.makeText(requireContext(),"Enter Email", Toast.LENGTH_SHORT)
-
+                Toast.makeText(requireContext(),"Enter Email", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
             if(password.isEmpty()) {
-                Toast.makeText(requireContext(),"Enter password", Toast.LENGTH_SHORT)
-
+                Toast.makeText(requireContext(),"Enter password", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
             if(email.isEmpty()) {
-                Toast.makeText(requireContext(),"Enter confirm password", Toast.LENGTH_SHORT)
+                Toast.makeText(requireContext(),"Enter confirm password", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
             registerUser(email,password,confirm)
             _auth.addAuthStateListener { auth ->
